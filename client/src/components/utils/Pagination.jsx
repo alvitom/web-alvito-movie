@@ -19,15 +19,23 @@ const Pagination = ({ page, lastPage, setPage }) => {
   return (
     <>
       <div className="d-flex justify-content-center gap-3 text-light fs-5 mb-5">
-        <button className="btn btn-danger" onClick={handlePrevPage} disabled={page <= 1}>
-          Prev
-        </button>
+        {page <= 1 ? (
+          <button className="btn btn-danger disabled">Prev</button>
+        ) : (
+          <button className="btn btn-danger" onClick={handlePrevPage}>
+            Prev
+          </button>
+        )}
         <p className="my-auto p-1">
           {page} of {lastPage}
         </p>
-        <button className="btn btn-danger" onClick={handleNextPage} disabled={page >= lastPage}>
-          Next
-        </button>
+        {page >= lastPage ? (
+          <button className="btn btn-danger disabled">Next</button>
+        ) : (
+          <button className="btn btn-danger" onClick={handleNextPage}>
+            Next
+          </button>
+        )}
       </div>
     </>
   );

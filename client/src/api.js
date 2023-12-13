@@ -1,39 +1,27 @@
 import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_BASEURL;
-const apiKey = process.env.REACT_APP_APIKEY;
 
-export const getMovieListNowPlaying = async () => {
+export const getMovieList = async (resource, query, limitDataVal) => {
   try {
-    const movie = await axios.get(`${baseUrl}/movie/now_playing?page=1&api_key=${apiKey}`);
-    return movie.data.results;
+    const response = await axios.get(`${baseUrl}/movie/${resource}?${query}`);
+    const dataTotalPages = await response.data.total_pages;
+    const dataMovies = await response.data.results;
+    const limitDataMovies = dataMovies.slice(0, limitDataVal);
+    return [limitDataMovies, dataTotalPages];
   } catch (err) {
     console.log(`Error fetching data : ${err}`);
   }
 };
 
-export const getMovieListPopular = async () => {
+export const getMovieTotalResults = async (query, limitDataVal) => {
   try {
-    const movie = await axios.get(`${baseUrl}/movie/popular?page=1&api_key=${apiKey}`);
-    return movie.data.results;
-  } catch (err) {
-    console.log(`Error fetching data : ${err}`);
-  }
-};
-
-export const getMovieListTopRated = async () => {
-  try {
-    const movie = await axios.get(`${baseUrl}/movie/top_rated?page=1&api_key=${apiKey}`);
-    return movie.data.results;
-  } catch (err) {
-    console.log(`Error fetching data : ${err}`);
-  }
-};
-
-export const getMovieListUpcoming = async () => {
-  try {
-    const movie = await axios.get(`${baseUrl}/movie/upcoming?page=1&api_key=${apiKey}`);
-    return movie.data.results;
+    const response = await axios.get(`${baseUrl}/search/movie?query=${query}`);
+    const dataTotalPages = await response.data.total_pages;
+    const dataTotalResults = await response.data.total_results;
+    const dataMovies = await response.data.results;
+    const limitDataMovies = dataMovies.slice(0, limitDataVal);
+    return [limitDataMovies, dataTotalPages, dataTotalResults];
   } catch (err) {
     console.log(`Error fetching data : ${err}`);
   }

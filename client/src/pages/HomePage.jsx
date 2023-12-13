@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getMovieListNowPlaying, getMovieListPopular, getMovieListTopRated, getMovieListUpcoming } from "../api";
 import Header from "../components/MovieList/Header";
 import MovieList from "../components/MovieList/MovieList";
+import { getMovieList } from "../api";
+
+const apiKey = process.env.REACT_APP_APIKEY;
 
 const HomePage = () => {
   const [moviesNowPlaying, setMoviesNowPlaying] = useState([]);
@@ -11,25 +13,23 @@ const HomePage = () => {
   const [moviesUpcoming, setMoviesUpcoming] = useState([]);
 
   useEffect(() => {
-    getMovieListNowPlaying().then((result) => {
-      const limitData = result.slice(0, 6);
-      setMoviesNowPlaying(limitData);
-    });
+    const fetchMovies = async () => {
+      try {
+        const query = `page=1&api_key=${apiKey}`;
+        const [getMoviesNowPlaying] = await getMovieList("now_playing", query, 6);
+        setMoviesNowPlaying(getMoviesNowPlaying);
+        const [getMoviesPopular] = await getMovieList("popular", query, 6);
+        setMoviesPopular(getMoviesPopular);
+        const [getMoviesTopRated] = await getMovieList("top_rated", query, 6);
+        setMoviesTopRated(getMoviesTopRated);
+        const [getMoviesUpcoming] = await getMovieList("upcoming", query, 6);
+        setMoviesUpcoming(getMoviesUpcoming);
+      } catch (err) {
+        console.log(`Error fetching data : ${err}`);
+      }
+    };
 
-    getMovieListPopular().then((result) => {
-      const limitData = result.slice(0, 6);
-      setMoviesPopular(limitData);
-    });
-
-    getMovieListTopRated().then((result) => {
-      const limitData = result.slice(0, 6);
-      setMoviesTopRated(limitData);
-    });
-
-    getMovieListUpcoming().then((result) => {
-      const limitData = result.slice(0, 6);
-      setMoviesUpcoming(limitData);
-    });
+    fetchMovies();
   }, []);
   return (
     <>

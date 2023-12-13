@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import Header from "../components/MovieList/Header";
 import MovieList from "../components/MovieList/MovieList";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Pagination from "../components/utils/Pagination";
+import { getMovieTotalResults } from "../api";
+
+const apiKey = process.env.REACT_APP_APIKEY;
 
 const SearchPage = () => {
   const [movies, setMovies] = useState([]);
@@ -16,14 +18,12 @@ const SearchPage = () => {
   useEffect(() => {
     const getMovieList = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASEURL}/search/movie?query=${keyword}&page=${page}&api_key=${process.env.REACT_APP_APIKEY}`);
-        const data = await response.data.results;
-        const totalPages = await response.data.total_pages;
-        const totalResults = await response.data.total_results
-        const limitData = data.slice(0, 20);
-        setMovies(limitData);
-        setTotalPage(totalPages);
-        setTotalResult(totalResults)
+        const query = `${keyword}&page=${page}&api_key=${apiKey}`;
+
+        const [getMovies, getTotalPages, getTotalResults] = await getMovieTotalResults(query, 20);
+        setMovies(getMovies);
+        setTotalPage(getTotalPages);
+        setTotalResult(getTotalResults);
       } catch (err) {
         console.log("Error : ", err);
       }
