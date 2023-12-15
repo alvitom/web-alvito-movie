@@ -11,6 +11,7 @@ import NowPlayingPage from "./pages/NowPlayingPage";
 import PopularPage from "./pages/PopularPage";
 import TopRatedPage from "./pages/TopRatedPage";
 import UpcomingPage from "./pages/UpcomingPage";
+import MoviePage from "./pages/MoviePage";
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
         <Route path="/popular" element={<PopularPage />} />
         <Route path="/top_rated" element={<TopRatedPage />} />
         <Route path="/upcoming" element={<UpcomingPage />} />
+        <Route path="/movie/:movieId" element={<MoviePage />} />
+        {/* <Route path="/tv/:seriesId" element={<MoviePage />} /> */}
         <Route path="/search/:keyword" element={<SearchPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

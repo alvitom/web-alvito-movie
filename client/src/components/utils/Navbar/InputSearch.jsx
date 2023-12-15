@@ -15,7 +15,7 @@ const InputSearch = () => {
 
   return (
     <div className="d-flex justify-content-end gap-2" role="search">
-      <input className="form-control" type="search" placeholder="Cari film..." aria-label="Search" ref={searchRef} onKeyDown={(e) => {
+      <input className="form-control pe-5" type="search" placeholder="Cari film..." aria-label="Search" ref={searchRef} onKeyDown={(e) => {
         if(e.key === 'Enter') {
           handleSearch();
         }
