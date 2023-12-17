@@ -3,7 +3,7 @@ const Header = ({ title, linkHref, linkTitle }) => {
     <>
     {linkHref && linkTitle ? (
       <div className="d-flex justify-content-between align-items-center">
-      <h2 className="text-light">{title}</h2>
+      <h3 className="text-light">{title}</h3>
       <a href={linkHref} className="btn btn-danger">
           {linkTitle}
         </a>

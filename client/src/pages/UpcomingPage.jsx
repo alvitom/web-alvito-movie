@@ -30,7 +30,7 @@ const UpcomingPage = () => {
     <>
       <div className="container">
         <HeaderMenu title="Film Akan Datang" page={page} />
-        <MovieList colVal={3} api={moviesUpcoming} />
+        <MovieList colVal={3} movies={moviesUpcoming} />
         <Pagination page={page} lastPage={totalPage} setPage={setPage} />
       </div>
     </>

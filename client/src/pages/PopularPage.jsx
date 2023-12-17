@@ -30,7 +30,7 @@ const PopularPage = () => {
     <>
       <div className="container">
         <HeaderMenu title="Film Populer" page={page} />
-        <MovieList colVal={3} api={moviesPopular} />
+        <MovieList colVal={3} movies={moviesPopular} />
         <Pagination page={page} lastPage={totalPage} setPage={setPage} />
       </div>
     </>

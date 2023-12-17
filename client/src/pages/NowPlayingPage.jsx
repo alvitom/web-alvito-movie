@@ -31,7 +31,7 @@ const NowPlayingPage = () => {
     <>
       <div className="container">
         <HeaderMenu title="Film Sedang Tayang" page={page} />
-        <MovieList colVal={3} api={moviesNowPlaying} />
+        <MovieList colVal={3} movies={moviesNowPlaying} />
         <Pagination page={page} lastPage={totalPage} setPage={setPage} />
       </div>
     </>

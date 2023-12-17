@@ -39,7 +39,7 @@ const SearchPage = () => {
           {movies.length > 0 ? (
             <>
               <h4 className="text-center">Terdapat {totalResult} film ditemukan</h4>
-              <MovieList colVal={3} api={movies} />
+              <MovieList colVal={3} movies={movies} />
               <Pagination page={page} lastPage={totalPage} setPage={setPage} />
             </>
           ) : (

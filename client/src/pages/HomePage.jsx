@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/MovieList/Header";
 import MovieList from "../components/MovieList/MovieList";
 import { getMovieList, getTvList } from "../api";
+import Slideshow from "../components/Carousel/Carousel";
 
 const apiKey = process.env.REACT_APP_APIKEY;
 
@@ -46,30 +47,31 @@ const HomePage = () => {
   return (
     <>
       <div className="container">
-        <h1 className="mt-5 text-center text-light">Movie</h1>
+        <Slideshow movies={moviesNowPlaying} />
+        <h2 className="mt-5 text-center text-light">Movie</h2>
 
         {/* Sedang Tayang */}
         <section className="border-bottom border-secondary mt-4">
           <Header title="Sedang Tayang" linkHref="/now_playing" linkTitle="Lihat Semua" />
-          <MovieList api={moviesNowPlaying} />
+          <MovieList movies={moviesNowPlaying} />
         </section>
 
         {/* Populer */}
         <section className="border-bottom border-secondary mt-5">
           <Header title="Populer" linkHref="/popular" linkTitle="Lihat Semua" />
-          <MovieList api={moviesPopular} />
+          <MovieList movies={moviesPopular} />
         </section>
 
         {/* Peringkat Teratas */}
         <section className="border-bottom border-secondary mt-5">
           <Header title="Peringkat Teratas" linkHref="/top_rated" linkTitle="Lihat Semua" />
-          <MovieList api={moviesTopRated} />
+          <MovieList movies={moviesTopRated} />
         </section>
 
         {/* Akan Tayang */}
         <section className="border-bottom border-secondary mt-5">
           <Header title="Akan Tayang" linkHref="/upcoming" linkTitle="Lihat Semua" />
-          <MovieList api={moviesUpcoming} />
+          <MovieList movies={moviesUpcoming} />
         </section>
 
         <h1 className="mt-5 text-center text-light">Serial TV</h1>

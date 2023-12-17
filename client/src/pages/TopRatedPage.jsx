@@ -30,7 +30,7 @@ const TopRatedPage = () => {
     <>
       <div className="container">
         <HeaderMenu title="Film Peringkat Teratas" page={page} />
-        <MovieList colVal={3} api={moviesTopRated} />
+        <MovieList colVal={3} movies={moviesTopRated} />
         <Pagination page={page} lastPage={totalPage} setPage={setPage} />
       </div>
     </>
