@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import HeaderMenu from "../components/utils/HeaderMenu";
-import MovieList from "../components/MovieList/MovieList";
-import { getMovieList } from "../api";
-import Pagination from "../components/utils/Pagination";
+import HeaderMenu from "../../components/utils/HeaderMenu";
+import MovieList from "../../components/CardList/MovieList";
+import { getMovieList } from "../../api";
+import Pagination from "../../components/utils/Pagination";
 
 const apiKey = process.env.REACT_APP_APIKEY;
 

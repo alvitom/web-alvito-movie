@@ -1,15 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Header from "../components/MovieList/Header";
-import MovieList from "../components/MovieList/MovieList";
+import Header from "../components/CardList/Header";
 import { useParams } from "react-router-dom";
 import Pagination from "../components/utils/Pagination";
-import { getMovieTotalResults } from "../api";
+import { getTotalResults } from "../api";
+import SearchList from "../components/CardList/SearchList";
 
 const apiKey = process.env.REACT_APP_APIKEY;
 
 const SearchPage = () => {
-  const [movies, setMovies] = useState([]);
+  const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState();
   const [totalResult, setTotalResult] = useState();
@@ -20,10 +20,10 @@ const SearchPage = () => {
       try {
         const query = `${keyword}&page=${page}&api_key=${apiKey}`;
 
-        const [getMovies, getTotalPages, getTotalResults] = await getMovieTotalResults(query, 20);
-        setMovies(getMovies);
-        setTotalPage(getTotalPages);
-        setTotalResult(getTotalResults);
+        const [getData, getTotalPage, getTotalResult] = await getTotalResults(query, 20);
+        setResults(getData);
+        setTotalPage(getTotalPage);
+        setTotalResult(getTotalResult);
       } catch (err) {
         console.log("Error : ", err);
       }
@@ -36,10 +36,10 @@ const SearchPage = () => {
       <div className="container">
         <section className="mt-5">
           <Header title={`Hasil pencarian : ${keyword}`} />
-          {movies.length > 0 ? (
+          {results.length > 0 ? (
             <>
-              <h4 className="text-center">Terdapat {totalResult} film ditemukan</h4>
-              <MovieList colVal={3} movies={movies} />
+              <h4 className="text-center">Terdapat {totalResult} hasil pencarian</h4>
+              <SearchList datas={results} />
               <Pagination page={page} lastPage={totalPage} setPage={setPage} />
             </>
           ) : (

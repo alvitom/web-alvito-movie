@@ -7,11 +7,12 @@ import Navbar from "./components/utils/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import NowPlayingPage from "./pages/NowPlayingPage";
-import PopularPage from "./pages/PopularPage";
-import TopRatedPage from "./pages/TopRatedPage";
-import UpcomingPage from "./pages/UpcomingPage";
+import NowPlayingPage from "./pages/Movies/NowPlayingPage";
+import PopularPage from "./pages/Movies/PopularPage";
+import TopRatedPage from "./pages/Movies/TopRatedPage";
+import UpcomingPage from "./pages/Movies/UpcomingPage";
 import MoviePage from "./pages/MoviePage";
+import TvPage from "./pages/TvPage";
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/top_rated" element={<TopRatedPage />} />
         <Route path="/upcoming" element={<UpcomingPage />} />
         <Route path="/movie/:movieId" element={<MoviePage />} />
-        {/* <Route path="/tv/:seriesId" element={<MoviePage />} /> */}
+        <Route path="/tv/:seriesId" element={<TvPage />} />
         <Route path="/search/:keyword" element={<SearchPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

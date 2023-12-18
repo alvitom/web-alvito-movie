@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Header from "../components/MovieList/Header";
-import MovieList from "../components/MovieList/MovieList";
+import Header from "../components/CardList/Header";
+import MovieList from "../components/CardList/MovieList";
+import TvList from "../components/CardList/TvList";
 import { getMovieList, getTvList } from "../api";
 import Slideshow from "../components/Carousel/Carousel";
 
@@ -74,30 +75,30 @@ const HomePage = () => {
           <MovieList movies={moviesUpcoming} />
         </section>
 
-        <h1 className="mt-5 text-center text-light">Serial TV</h1>
+        <h2 className="mt-5 text-center text-light">Serial TV</h2>
 
         {/* Tayang Hari Ini */}
         <section className="border-bottom border-secondary mt-4">
           <Header title="Tayang Hari Ini" linkHref="/airing_today" linkTitle="Lihat Semua" />
-          <MovieList api={tvAiringToday} />
+          <TvList tvSeries={tvAiringToday} />
         </section>
 
         {/* Sedang Tayang */}
         <section className="border-bottom border-secondary mt-5">
           <Header title="Sedang Tayang" linkHref="/on_the_air" linkTitle="Lihat Semua" />
-          <MovieList api={tvOnTheAir} />
+          <TvList tvSeries={tvOnTheAir} />
         </section>
 
         {/* Populer */}
         <section className="border-bottom border-secondary mt-5">
           <Header title="Populer" linkHref="/popular" linkTitle="Lihat Semua" />
-          <MovieList api={tvPopular} />
+          <TvList tvSeries={tvPopular} />
         </section>
         
         {/* Peringkat Teratas */}
         <section className="border-bottom border-secondary mt-5">
           <Header title="Peringkat Teratas" linkHref="/top_rated" linkTitle="Lihat Semua" />
-          <MovieList api={tvTopRated} />
+          <TvList tvSeries={tvTopRated} />
         </section>
       </div>
     </>

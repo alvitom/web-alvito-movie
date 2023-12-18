@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import HeaderMenu from "../components/utils/HeaderMenu";
-import Pagination from "../components/utils/Pagination";
-import MovieList from "../components/MovieList/MovieList";
-import { getMovieList } from "../api";
+import HeaderMenu from "../../components/utils/HeaderMenu";
+import Pagination from "../../components/utils/Pagination";
+import MovieList from "../../components/CardList/MovieList";
+import { getMovieList } from "../../api";
 
 const apiKey = process.env.REACT_APP_APIKEY;
 
-const PopularPage = () => {
-  const [moviesPopular, setMoviesPopular] = useState([]);
+const UpcomingPage = () => {
+  const [moviesUpcoming, setMoviesUpcoming] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState();
 
@@ -15,8 +15,8 @@ const PopularPage = () => {
     const fetchMovies = async () => {
       try {
         const query = `page=${page}&api_key=${apiKey}`;
-        const [getMovies, getTotalPages] = await getMovieList("popular", query, 20);
-        setMoviesPopular(getMovies);
+        const [getMovies, getTotalPages] = await getMovieList("upcoming", query, 20);
+        setMoviesUpcoming(getMovies);
         setTotalPage(getTotalPages);
       } catch (err) {
         console.log(`Error fetching data : ${err}`);
@@ -29,12 +29,12 @@ const PopularPage = () => {
   return (
     <>
       <div className="container">
-        <HeaderMenu title="Film Populer" page={page} />
-        <MovieList colVal={3} movies={moviesPopular} />
+        <HeaderMenu title="Film Akan Datang" page={page} />
+        <MovieList colVal={3} movies={moviesUpcoming} />
         <Pagination page={page} lastPage={totalPage} setPage={setPage} />
       </div>
     </>
   );
 };
 
-export default PopularPage;
+export default UpcomingPage;
